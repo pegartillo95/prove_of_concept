@@ -1,0 +1,65 @@
+# imports heyy
+# Reference proveApp.py
+#: import main proveApp
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+
+
+# Popup for the linear regression
+<LR_Popup>
+    size_hint: .7, .7
+    auto_dismiss: True
+    title: "Linear regression properties"
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Empty part"
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: .5
+            OrangeButton:
+                text: "Save"
+
+<OrangeButton@Button>:
+    background_color: 1, .5, 0, 1
+
+<MainScreen>:
+    id: main_screen
+    layout_content: layout_content
+    algorithms_list: algorithm_list_view
+    BoxLayout:
+        id: bl
+        orientation: 'horizontal'
+        padding: 10
+        spacing: 10
+        ScrollView:
+            size_hint_x: .6
+            size: self.size
+            GridLayout:
+                id: layout_content
+                size_hint_y: None
+                cols: 1
+                row_default_height: '60dp'
+                row_force_default: True
+                spacing: 10
+                padding: 30,10,10,10
+                OrangeButton:
+                    text: "Linear Regression"
+                    on_press: main_screen.add_linear_reg()
+                OrangeButton:
+                    text: "Logistic Regression"
+                    on_press: main_screen.add_logistic_regression()
+                OrangeButton:
+                    text: "Support Vector Machine"
+                    on_press: main_screen.add_SVM()
+                OrangeButton:
+                    text: "K-means"
+                    on_press: main_screen.add_K_means()
+                OrangeButton:
+                    text: "Open LR_popup"
+                    on_press: root.open_LR_Popup()
+        ListView:
+            id: algorithm_list_view
+            adapter:
+                ListAdapter(data=[], cls=main.AlgorithmListButton)
+
+

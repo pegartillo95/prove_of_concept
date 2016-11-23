@@ -25,7 +25,8 @@
 <MainScreen>:
     id: main_screen
     layout_content: layout_content
-    algorithms_list: algorithm_list_view
+    algorithms_list: algorithms_list
+    scroll_view_list: scroll_view_list
     BoxLayout:
         id: bl
         orientation: 'horizontal'
@@ -33,7 +34,6 @@
         spacing: 10
         ScrollView:
             size_hint_x: .6
-            size: self.size
             GridLayout:
                 id: layout_content
                 size_hint_y: None
@@ -57,9 +57,20 @@
                 OrangeButton:
                     text: "Open LR_popup"
                     on_press: root.open_LR_Popup()
-        ListView:
-            id: algorithm_list_view
-            adapter:
-                ListAdapter(data=[], cls=main.AlgorithmListButton)
+        BoxLayout:
+            id: bl_2
+            orientation: 'horizontal'
+            padding: 10
+            spacing: 10
+            ScrollView:
+                id: scroll_view_list
+                GridLayout:
+                    id: algorithms_list
+                    size_hint_y: None
+                    cols: 1
+                    row_default_height: '80dp'
+                    row_force_default: True
+                    spacing: 10
+                    padding: 10,10,10,10
 
 

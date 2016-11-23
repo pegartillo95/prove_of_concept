@@ -3,8 +3,10 @@ kivy.require("1.9.0")
 
 from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
+from kivy.uix.button import Button
 
 
 #Classes for the popups
@@ -13,7 +15,8 @@ class LR_Popup(Popup):
 
 class MainScreen(FloatLayout):
     layout_content=ObjectProperty(None)
-    algorithms_list=ObjectProperty()
+    algorithms_list = ObjectProperty(None)
+    scroll_view_list = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
@@ -21,20 +24,20 @@ class MainScreen(FloatLayout):
 
     #Functions to add algorithms to the algorithms list
     def add_linear_reg(self):
-        self.algorithms_list.adapter.data.extend(["Linear regression"])
-        self.algorithms_list._trigger_reset_populate()
+        btn = Button(text="Linear Regression")
+        self.algorithms_list.add_widget(btn,index=0)
 
     def add_logistic_regression(self):
-        self.algorithms_list.adapter.data.extend(["Logistic regression"])
-        self.algorithms_list._trigger_reset_populate()
+        btn = Button(text="Logistic Regression")
+        self.algorithms_list.add_widget(btn, index=0)
 
     def add_SVM(self):
-        self.algorithms_list.adapter.data.extend(["Support vector machine"])
-        self.algorithms_list._trigger_reset_populate()
+        btn = Button(text="Support vector machine")
+        self.algorithms_list.add_widget(btn, index=0)
 
     def add_K_means(self):
-        self.algorithms_list.adapter.data.extend(["K means"])
-        self.algorithms_list._trigger_reset_populate()
+        btn = Button(text="K_means")
+        self.algorithms_list.add_widget(btn, index=0)
 
     #Open popups to change the parameters of concrete algorithm
     def open_LR_Popup(self):

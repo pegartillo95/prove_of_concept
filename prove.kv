@@ -4,6 +4,30 @@
 #: import ListAdapter kivy.adapters.listadapter.ListAdapter
 
 
+#Changed widgets
+<OrangeButton@Button>:
+    background_color: 1, .5, 0, 1
+
+#Popup to select a file as input
+<LoadDialog>:
+    size_hint: .7, .7
+    title: "Choose the input file"
+    BoxLayout:
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                #on_release: root.cancel()
+            Button:
+                text: "Load"
+                #on_release: root.load(filechooser.path, filechooser.selection)
+
+
 # Popup for the linear regression
 <LR_Popup>
     size_hint: .7, .7
@@ -19,8 +43,7 @@
             OrangeButton:
                 text: "Save"
 
-<OrangeButton@Button>:
-    background_color: 1, .5, 0, 1
+
 
 <MainScreen>:
     id: main_screen
@@ -42,6 +65,13 @@
                 row_force_default: True
                 spacing: 10
                 padding: 30,10,10,10
+                BoxLayout:
+                    spacing: 10
+                    orientation: 'horizontal'
+                    TextInput:
+                    OrangeButton:
+                        text: "Select input"
+                        on_press: root.open_LoadFilePopup()
                 OrangeButton:
                     text: "Linear Regression"
                     on_press: main_screen.add_linear_reg()
@@ -54,9 +84,6 @@
                 OrangeButton:
                     text: "K-means"
                     on_press: main_screen.add_K_means()
-                OrangeButton:
-                    text: "Open LR_popup"
-                    on_press: root.open_LR_Popup()
         BoxLayout:
             id: bl_2
             orientation: 'horizontal'

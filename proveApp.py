@@ -13,6 +13,9 @@ from kivy.uix.button import Button
 class LR_Popup(Popup):
     pass
 
+class LoadDialog(Popup):
+    pass
+
 class MainScreen(FloatLayout):
     layout_content=ObjectProperty(None)
     algorithms_list = ObjectProperty(None)
@@ -38,6 +41,14 @@ class MainScreen(FloatLayout):
     def add_K_means(self):
         btn = Button(text="K_means")
         self.algorithms_list.add_widget(btn, index=0)
+
+    #Open the popup to select the input file
+    def open_LoadFilePopup(self):
+        the_popup = LoadDialog()
+        the_popup.open()
+
+    def close_LoadFilePopup(self):
+        pass
 
     #Open popups to change the parameters of concrete algorithm
     def open_LR_Popup(self):
